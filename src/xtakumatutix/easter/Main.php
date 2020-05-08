@@ -29,25 +29,25 @@ Class Main extends PluginBase implements Listener {
 
         if ($player->getLevel()->getName() == "event") {
 
-            if ($block === 17 and mt_rand(0, 6) === 1) {
+            if ($block === 17 and mt_rand(0, 10) === 3) {
                 self::addegg($player, self::Wood_Egg);
             }
 
             if ($block === 2 or $block === 3) {
-                if (mt_rand(0, 9) === 1) {
+                if (mt_rand(0, 39) === 15) {
                     self::addegg($player, self::Dirt_Egg);
                 }
             }
 
-            if ($block == 1 and mt_rand(0, 11) === 3) {
+            if ($block == 1 and mt_rand(0, 30) === 6) {
                 self::addegg($player, self::Stone_Egg);
             }
 
-            if ($block === 18 and mt_rand(0, 15) === 1) {
+            if ($block === 18 and mt_rand(0, 21) === 12) {
                 self::addegg($player, self::Leef_Egg);
             }
 
-            if ($block === 12 and mt_rand(0, 10) === 3) {
+            if ($block === 12 and mt_rand(0, 32) === 21) {
                 self::addegg($player, self::Sand_Egg);
             }
         }
