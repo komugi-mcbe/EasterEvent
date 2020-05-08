@@ -7,6 +7,7 @@ use pocketmine\event\Listener;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\Player;
 use pocketmine\item\Item;
+use pocketmine\network\mcpe\protocol\PlaySoundPacket;
 
 Class Main extends PluginBase implements Listener {
 
@@ -28,25 +29,25 @@ Class Main extends PluginBase implements Listener {
 
         if ($player->getLevel()->getName() == "event") {
 
-            if ($block === 17 and mt_rand(0, 3) === 1) {
+            if ($block === 17 and mt_rand(0, 6) === 1) {
                 self::addegg($player, self::Wood_Egg);
             }
 
             if ($block === 2 or $block === 3) {
-                if (mt_rand(0, 5) === 5) {
+                if (mt_rand(0, 9) === 1) {
                     self::addegg($player, self::Dirt_Egg);
                 }
             }
 
-            if ($block == 1 and mt_rand(0, 6) === 3) {
+            if ($block == 1 and mt_rand(0, 11) === 3) {
                 self::addegg($player, self::Stone_Egg);
             }
 
-            if ($block === 18 and mt_rand(0, 3) === 1) {
+            if ($block === 18 and mt_rand(0, 15) === 1) {
                 self::addegg($player, self::Leef_Egg);
             }
 
-            if ($block === 12 and mt_rand(0, 4) === 1) {
+            if ($block === 12 and mt_rand(0, 10) === 3) {
                 self::addegg($player, self::Sand_Egg);
             }
         }
@@ -62,6 +63,14 @@ Class Main extends PluginBase implements Listener {
         $item->setLore(["[Event:Easter]"]);
         $player->getInventory()->addItem($item);
         $player->sendMessage("§a >> {$eggname}をゲット！");
+        $pk = new PlaySoundPacket();
+        $pk->soundName = 'random.levelup';
+        $pk->x = $player->x;
+        $pk->y = $player->y;
+        $pk->z = $player->z;
+        $pk->volume = 1;
+        $pk->pitch = 1;
+        $player->dataPacket($pk);
     }
 
 }
