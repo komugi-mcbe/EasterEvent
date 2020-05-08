@@ -10,6 +10,11 @@ use pocketmine\item\Item;
 
 Class Main extends PluginBase implements Listener {
 
+    const Wood_Egg="§6木§fの§e卵§r";
+    const Dirt_Egg="§6土§fの§e卵§r";
+    const Stone_Egg="§7石§fの§e卵§r";
+    const Leef_Egg="§a葉っぱ§fの§e卵§r";
+
     public function onEnable() {
         $this->getLogger()->notice("読み込み完了_ver.1.0.0");
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
@@ -22,23 +27,21 @@ Class Main extends PluginBase implements Listener {
         if ($player->getLevel()->getName() == "event") {
 
             if ($block === 17 and mt_rand(0, 1) === 1) {
-                self::addegg($player, "§6木§fの§e卵§r");
+                self::addegg($player, self::Wood_Egg);
             }
 
             if ($block === 2 or $block === 3) {
                 if (mt_rand(0, 1) === 1) {
-                    self::addegg($player, "§6土§fの§e卵§r");
+                    self::addegg($player, self::Dirt_Egg);
                 }
             }
 
             if ($block == 1 and mt_rand(0, 1) === 1) {
-                self::addegg($player, "§7石§fの§e卵§r");
-
+                self::addegg($player, self::Stone_Egg);
             }
 
             if ($block === 18 and mt_rand(0, 1) === 1) {
-                self::addegg($player, "§a葉っぱ§fの§e卵§r");
-
+                self::addegg($player, self::Leef_Egg);
             }
         }
     }
