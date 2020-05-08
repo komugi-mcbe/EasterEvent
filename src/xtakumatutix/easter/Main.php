@@ -11,9 +11,11 @@ use pocketmine\item\Item;
 Class Main extends PluginBase implements Listener {
 
     const Wood_Egg="§6木§fの§e卵§r";
-    const Dirt_Egg="§6土§fの§e卵§r";
+    const Dirt_Egg="§g土§fの§e卵§r";
+    const Sand_Egg="§g砂§fの§e卵§r";
     const Stone_Egg="§7石§fの§e卵§r";
     const Leef_Egg="§a葉っぱ§fの§e卵§r";
+    const Sky_Egg="§b空§fの§e卵§r";
 
     public function onEnable() {
         $this->getLogger()->notice("読み込み完了_ver.1.0.0");
@@ -43,16 +45,21 @@ Class Main extends PluginBase implements Listener {
             if ($block === 18 and mt_rand(0, 1) === 1) {
                 self::addegg($player, self::Leef_Egg);
             }
+
+            if ($block === 12 and mt_rand(0, 1) === 1) {
+                self::addegg($player, self::Sand_Egg);
+            }
         }
     }
 
     public static function addegg(Player $player, string $eggname) {
         if (!$player->getInventory()->canAddItem(Item::get(344, 0, 1))) {
-            $player->sendMessage(" >> おっと卵をゲットしたのにインベントリがいっぱいで、捨てちゃった...");
+            $player->sendMessage("§c >> §fおっと卵をゲットしたのにインベントリがいっぱいで、捨てちゃった...");
             return;
         }
         $item = Item::get(344, 0, 1);
         $item->setCustomName($eggname);
+        $item->setLore(["[Event:Easter]"]);
         $player->getInventory()->addItem($item);
         $player->sendMessage("§a >> {$eggname}をゲット！");
     }
