@@ -40,7 +40,7 @@ Class Main extends PluginBase implements Listener {
 
                 case 2:
                 case 3:
-					if (mt_rand(0, 39) === 15) self::addegg($player, self::Dirt_Egg);
+			        if (mt_rand(0, 39) === 15) self::addegg($player, self::Dirt_Egg);
                     break;
 
                 case 1:
