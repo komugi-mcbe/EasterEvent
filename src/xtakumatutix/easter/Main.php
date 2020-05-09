@@ -24,36 +24,39 @@ Class Main extends PluginBase implements Listener {
         $this->getLogger()->notice("読み込み完了_ver.1.0.0");
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
-
-    public function onBreak(BlockBreakEvent $event) {
+	
+	/**
+     * @ignoreCancelled
+     */
+	public function onBreak(BlockBreakEvent $event) {
         $player = $event->getPlayer();
         $block = $event->getBlock()->getID();
 
         if ($player->getLevel()->getName() == "event") {
+			switch ($block){
+                case 17:
+                    if(mt_rand(0,10) === 3) self::addegg($player, self::Wood_Egg);
+                    break;
 
-            if ($block === 17 and mt_rand(0, 10) === 3) {
-                self::addegg($player, self::Wood_Egg);
-            }
+                case 2:
+                case 3:
+		if(mt_rand(0, 39) === 15) self::addegg($player, self::Dirt_Egg);
+                    break;
 
-            if ($block === 2 or $block === 3) {
-                if (mt_rand(0, 39) === 15) {
-                    self::addegg($player, self::Dirt_Egg);
-                }
-            }
+                case 1:
+                    if(mt_rand(0,30) === 6) self::addegg($player, self::Stone_Egg);
+                    break;
 
-            if ($block == 1 and mt_rand(0, 30) === 6) {
-                self::addegg($player, self::Stone_Egg);
-            }
+                case 18:
+                    if(mt_rand(0,21) === 12) self::addegg($player, self::Leef_Egg);
+                    break;
 
-            if ($block === 18 and mt_rand(0, 21) === 12) {
-                self::addegg($player, self::Leef_Egg);
+                case 12:
+                    if(mt_rand(0,32) === 21) self::addegg($player, self::Sand_Egg);
+                    break;
             }
-
-            if ($block === 12 and mt_rand(0, 32) === 21) {
-                self::addegg($player, self::Sand_Egg);
-            }
-        }
-    }
+		}
+	}
 
     public function bucket(PlayerBucketEvent $event) {
     	$player = $event->getPlayer();
