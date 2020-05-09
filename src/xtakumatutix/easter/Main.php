@@ -59,12 +59,11 @@ Class Main extends PluginBase implements Listener {
     	$player = $event->getPlayer();
     	$id = $event->getItem()->getID();
     	$damage = $event->getItem()->getDamage();
-    	$player->sendMessage("{$id}:{$damage}");
 
     	if ($player->getLevel()->getName() == "event") {
 
-    		if ($id == 325){
-    			if ($damage == 8 and mt_rand(0, 2) === 1){
+    		if ($id == 325) {
+    			if ($damage == 8 and mt_rand(0, 2) === 1) {
     				self::addegg($player, self::Water_Egg);
     			}
     		}
