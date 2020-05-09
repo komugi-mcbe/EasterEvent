@@ -5,6 +5,7 @@ namespace xtakumatutix\easter;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\event\block\BlockBreakEvent;
+use pocketmine\event\player\PlayerBucketEvent;
 use pocketmine\Player;
 use pocketmine\item\Item;
 use pocketmine\network\mcpe\protocol\PlaySoundPacket;
@@ -15,8 +16,9 @@ Class Main extends PluginBase implements Listener {
     const Dirt_Egg="§g土§fの§e卵§r";
     const Sand_Egg="§g砂§fの§e卵§r";
     const Stone_Egg="§7石§fの§e卵§r";
-    const Leef_Egg="§a葉っぱ§fの§e卵§r";
+    const Leef_Egg="§2葉っぱ§fの§e卵§r";
     const Sky_Egg="§b空§fの§e卵§r";
+    const Water_Egg="§1海§fの§e卵§r";
 
     public function onEnable() {
         $this->getLogger()->notice("読み込み完了_ver.1.0.0");
@@ -51,6 +53,22 @@ Class Main extends PluginBase implements Listener {
                 self::addegg($player, self::Sand_Egg);
             }
         }
+    }
+
+    public function bucket(PlayerBucketEvent $event) {
+    	$player = $event->getPlayer();
+    	$id = $event->getItem()->getID();
+    	$damage = $event->getItem()->getDamage();
+    	$player->sendMessage("{$id}:{$damage}");
+
+    	if ($player->getLevel()->getName() == "event") {
+
+    		if ($id == 325){
+    			if ($damage == 8 and mt_rand(0, 2) === 1){
+    				self::addegg($player, self::Water_Egg);
+    			}
+    		}
+    	}
     }
 
     public static function addegg(Player $player, string $eggname) {
