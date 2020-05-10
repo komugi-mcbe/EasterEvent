@@ -3,4 +3,7 @@ name: EasterEvent
 main: xtakumatutix\easter\Main
 version: 1.0.0
 api: 3.0.0
+commands:
+  easter:
+    description: イースターイベントの卵を売ります
 ...
