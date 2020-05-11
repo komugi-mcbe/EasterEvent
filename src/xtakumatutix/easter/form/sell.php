@@ -18,7 +18,7 @@ class sell implements Form
     {
         return [
             'type' => 'modal',
-            'title' => 'ModalForm',
+            'title' => 'イースター用：売却フォーム',
             'content' => 'ダミー',
             'button1' => '§a売る',
             'button2' => '§cキャンセル'
